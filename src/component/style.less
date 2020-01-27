@@ -1,0 +1,324 @@
+@uptoTinyScreen: ~"only screen and (max-width: 350px)";
+@uptoPortraitScreen: ~"only screen and (max-width: 414px)";
+@fromPortraitScreen: ~"only screen and (min-width: 415px)";
+@fromExtreSmallScreen: ~"only screen and (min-width: 370px)";
+@fromSmallScreen: ~"only screen and (min-width: 600px)";
+@fromTabstartScreen: ~"only screen and (min-width: 768px)";
+@fromMediumScreen: ~"only screen and (min-width: 960px)";
+@fromLargeScreen: ~"only screen and (min-width: 1280px)";
+@fromExtraLargeScreen: ~"only screen and (min-width: 1600px)";
+@fromTvScreen: ~"only screen and (min-width: 1760px)";
+@uptoSmallScreen: ~"only screen and (max-width: 599px)";
+@uptoMediumScreen: ~"only screen and (max-width: 959px)";
+@minheight: ~"only screen and (min-height: 1081px)";
+@fromContentArea: ~"only screen and (min-width: 1400px)";
+
+@ad_blue: #208ac9;
+@secondary_text_color: #8b8a8a;
+
+* {
+  box-sizing: border-box;
+}
+.container {
+  max-width: 600px;
+}
+i.eventList {
+  background-color: transparent;
+  box-shadow: none !important;
+  pointer-events: none;
+}
+@keyframes load {
+  0% {
+    background-position: 0 50%;
+  }
+  100% {
+    background-position: 200% 50%;
+  }
+}
+
+.eventList.loading {
+  h2,
+  h3,
+  span,
+  figure {
+    background: linear-gradient(
+      to right,
+      #fafafa 0%,
+      #d2d2d2 50%,
+      #fafafa 100%
+    );
+    background-size: 600%;
+    background-position: 0 50%;
+    animation: load 4s infinite;
+  }
+  .info {
+    flex-grow: 1;
+  }
+  figure {
+    border-bottom: 1px solid #ccc;
+  }
+  h2,
+  h3,
+  span {
+    border: 1px solid #ccc;
+  }
+  h2 {
+    width: 2em;
+    height: 2.5em;
+  }
+  span,
+  h3 {
+    height: 1em;
+  }
+  span {
+    width: 100%;
+  }
+}
+.eventList {
+  &:not(:first-of-type) {
+    margin: 2em 0 0;
+  }
+
+  position: relative;
+  z-index: 0;
+  border-radius: 10px;
+  overflow: hidden;
+  background-color: #fff;
+  font-size: 1em;
+  display: flex;
+  flex-direction: column;
+  text-align: left;
+  figure {
+    background-size: 101%;
+    background-position: center;
+    background-repeat: no-repeat;
+    background-color: rgb(173, 173, 173);
+    margin: 0;
+    position: relative;
+    &:before {
+      content: "";
+      display: block;
+      padding-bottom: 50%;
+    }
+    i.limitedSpaces {
+      background-color: #ed1b35;
+      color: #fff;
+      padding: 0.4em 0.5em 0.4em 0;
+      font-size: 1em;
+      font-style: normal;
+      position: absolute;
+      right: 0;
+      top: 15%;
+      &:after,
+      &:before {
+        content: "";
+        width: 0;
+        height: 0;
+        border-style: solid;
+        position: absolute;
+        left: 0;
+        transform: translateX(-96%);
+      }
+      &:before {
+        top: 0;
+        border-width: 0 1.5em 1.7em 0;
+        border-color: transparent #ed1b35 transparent transparent;
+      }
+      &:after {
+        bottom: 0;
+        border-width: 0 0 1.5em 1.7em;
+        border-color: transparent transparent #ed1b35 transparent;
+      }
+    }
+  }
+  .detail {
+    position: relative;
+    display: flex;
+    flex-grow: 1;
+    &:before {
+      content: "";
+      background-color: currentColor;
+      width: 1em;
+      height: 100%;
+      position: absolute;
+      right: 0;
+      top: 0;
+    }
+  }
+  .info {
+    padding: 1em 1.3em;
+    h3 {
+      color: #1c1c1c;
+      margin: 0;
+      font-size: 1.3em;
+    }
+    span {
+      color: #707070;
+      display: block;
+      margin-top: 0.5em;
+      padding-left: 1.8em;
+      font-size: 0.9em;
+      position: relative;
+      min-height: 1.1em;
+      i {
+        font-weight: bold;
+        font-size: 1.2em;
+        position: absolute;
+        left: 0;
+        top: 0;
+      }
+    }
+  }
+  .startDate {
+    width: 30%;
+    min-width: 30%;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    position: relative;
+    &:before {
+      content: "";
+      right: 0;
+      top: 0.7em;
+      bottom: 0.7em;
+      width: 1px;
+      background-color: rgba(0, 0, 0, 0.2);
+      position: absolute;
+    }
+    h2 {
+      margin: 0;
+      text-align: center;
+      color: #a7a7a7;
+      text-transform: uppercase;
+      font-size: 1.7em;
+    }
+    strong {
+      display: block;
+      color: #1c1c1c;
+      font-size: 2em;
+      line-height: 0.8;
+    }
+  }
+  .eventLink {
+    position: absolute;
+    left: 0;
+    top: 0;
+    right: 0;
+    bottom: 0;
+    z-index: 1;
+  }
+  html[dir="rtl"] & {
+    figure i.limitedSpaces {
+      right: auto;
+      left: 0;
+      padding: 0.3em 0 0.4em 0.5em;
+      &:before,
+      &:after {
+        left: auto;
+        right: 0;
+        transform: translateX(96%) rotateY(-180deg);
+      }
+    }
+    .startDate:before,
+    .detail:before {
+      right: auto;
+      left: 0;
+    }
+    .info {
+      span {
+        padding-left: 0;
+        padding-right: 1.8em;
+        i {
+          left: auto;
+          right: 0;
+        }
+      }
+    }
+  }
+  @media @fromPortraitScreen {
+    width: 48%;
+    margin: 2em 0 0;
+  }
+  @media @fromLargeScreen {
+    width: 24%;
+    font-size: 0.85em;
+    cursor: pointer;
+    figure {
+      transition: background 0.5s, box-shadow 0.4s;
+      box-shadow: inset 0 0 3em rgba(0, 0, 0, 0);
+    }
+    &:hover {
+      figure {
+        box-shadow: inset 0 0 3em rgba(0, 0, 0, 0.8);
+        background-size: 120%;
+      }
+    }
+  }
+}
+.eventsWrap {
+  @media @fromPortraitScreen {
+    display: flex;
+    flex-wrap: wrap;
+    justify-content: space-between;
+  }
+}
+
+.districtFilter ul {
+  display: flex;
+  justify-content: space-between;
+  flex-wrap: wrap;
+  list-style: none;
+  margin: 0;
+  padding: 20px 0;
+  li {
+    cursor: pointer;
+    margin: 0;
+    width: 18%;
+    font-weight: 700;
+    font-size: 0.8em;
+    text-align: center;
+    padding: 1.2em 0.3em;
+    display: flex;
+    align-items: center;
+    line-height: 1.4;
+    border-radius: 0.7em;
+    position: relative;
+    justify-content: center;
+  }
+}
+
+header {
+  background-color: #3d3d3d;
+  width: 100%;
+  position: relative;
+  z-index: 2;
+  .contentArea {
+    position: relative;
+    justify-content: center;
+    padding-top: 1em;
+    padding-bottom: 1em;
+    display: flex;
+    align-items: center;
+    .logo {
+      background: url(https://abu-dhabi-moments-staging.eu-staging.kacdn.net/static/media/logo_en.158d6d3a.png) no-repeat;
+      background-size: 100%;
+      width: 10em;
+      &:before {
+        content: "";
+        display: block;
+        padding-bottom: 31%;
+    }
+  }
+  }
+}
+
+footer{
+  height: 80px;
+  background-color: #000;
+  position: static;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  color: #fff;
+}
+
