@@ -1,6 +1,5 @@
 import React, {useState, useEffect} from 'react';
 import './App.less';
-import District from '../component/category.js'
 import Home from '../home'
 import Detail from '../detail'
 import Login from '../login'
@@ -9,7 +8,6 @@ import {
   BrowserRouter as Router,
   Switch,
   Route,
-  useParams
 } from "react-router-dom";
 import '../styles/common.less';
 
@@ -73,8 +71,8 @@ const [detailData, setdetailData] = useState([])
   return (
     <>
     <div className="App">
-      <Layout>
-        <Router>
+      <Router>
+        <Layout>
           <Switch>
             <Route exact path="/">
               <Home distData={distData} eventData={eventData} distFilter={distFilter}/>
@@ -86,9 +84,8 @@ const [detailData, setdetailData] = useState([])
               <Detail eventData={eventData} detailData={detailData} navi={navi}/>
             </Route>     
           </Switch>
-        </Router>
-        
-      </Layout>
+        </Layout>
+      </Router>
     </div>
     </>
   );

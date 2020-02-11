@@ -269,3 +269,181 @@ footer {
     }
   }
 }
+.searchContainer {
+  pointer-events: none;
+  opacity: 0;
+  transition: opacity 0.4s;
+  width: 100%;
+  position: absolute;
+  left: 0;
+  top: 0;
+  height: 100%;
+  &.searchActive {
+    opacity: 1;
+    .searchBox {
+      pointer-events: auto;
+    }
+  }
+  input {
+    color: #fff;
+    background: transparent;
+    border: none;
+    border-radius: 0;
+    border-bottom: 1px solid #fff;
+    padding: 0.7em;
+    width: 100%;
+    outline: none;
+  }
+  .searchBox {
+    display: flex;
+    align-items: center;
+    padding: 1.3em;
+    background: #3d3d3d;
+    width: 60%;
+    height: 100%;
+    position: relative;
+    i.icon-search {
+      display: none;
+    }
+    i.icon-x {
+      position: absolute;
+      right: 1.3em;
+      width: 1.2em;
+      height: 1.2em;
+      background: #fff;
+      border-radius: 50%;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+    }
+  }
+  .resultBox {
+    background-color: #fff;
+    overflow: hidden;
+  }
+  .noResult {
+    color: #3d3d3d;
+    padding: 1em;
+    font-size: 1.2em;
+  }
+  html[dir='rtl'] & {
+    .searchBox {
+      i.icon-x {
+        right: auto;
+        left: 1.3em;
+      }
+    }
+  }
+  @media @fromTabstartScreen {
+    position: relative;
+    width: 15em;
+    opacity: 1;
+    height: auto;
+    display: inline-block;
+    vertical-align: middle;
+    pointer-events: auto;
+    margin: 0 0.5em;
+    .searchBox {
+      width: 100%;
+      padding: 0;
+      i.icon-search {
+        display: block;
+        position: absolute;
+        left: 0;
+        bottom: 0.3em;
+        color: #fff;
+        margin: 0;
+        font-size: 1.5em;
+      }
+      i.icon-x {
+        display: none;
+        right: 0;
+        &.active {
+          display: flex;
+        }
+      }
+      input {
+        padding-left: 2.5em;
+      }
+      html[dir='rtl'] & {
+        input {
+          padding-left: 0.7em;
+          padding-right: 2.8em;
+        }
+        i.icon-search {
+          left: auto;
+          right: 0;
+        }
+        i.icon-x {
+          left: 0.7em;
+        }
+      }
+    }
+    .resultBox {
+      position: absolute;
+      width: 100%;
+      left: 0;
+      bottom: 0;
+      transform: translateY(106%);
+    }
+    .noResult {
+      font-size: 1em;
+    }
+  }
+}
+.resultList {
+  pointer-events: auto;
+  font-size: 1.2em;
+  margin: 1em;
+  display: flex;
+  position: relative;
+  a {
+    position: absolute;
+    width: 100%;
+    left: 0;
+    height: 100%;
+    top: 0;
+    z-index: 1;
+  }
+  figure {
+    min-width: 4em;
+    width: 4em;
+    height: 4em;
+    margin: 0;
+  }
+  > div {
+    flex-grow: 1;
+    padding: 0 1em;
+  }
+  h3 {
+    font-size: 1em;
+    margin: 0;
+  }
+  p {
+    opacity: 0.6;
+    margin: 0.3em 0;
+    font-size: 0.8em;
+  }
+  img {
+    width: 100%;
+    height: 100%;
+    object-fit: cover;
+  }
+  @media @fromTabstartScreen {
+    font-size: 0.8em;
+    figure {
+      width: 3em;
+      height: 3em;
+    }
+  }
+  @media @fromLargeScreen {
+    div {
+      transition: opacity 0.3s;
+    }
+    &:hover {
+      div {
+        opacity: 0.6;
+      }
+    }
+  }
+}

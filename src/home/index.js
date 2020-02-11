@@ -1,4 +1,4 @@
-import React, {useState, useEffect} from 'react';
+import React from 'react';
 import '../component/style.less';
 import District from '../component/category.js'
 import EventList from '../component/card.js'

@@ -2,8 +2,7 @@ import React, {useState, useEffect} from 'react';
 import './style.less';
 import ReactDOM from "react-dom";
 import {
-  BrowserRouter as Router,
-  Switch,
+  BrowserRouter as 
   Route,
   useParams
 } from "react-router-dom";
