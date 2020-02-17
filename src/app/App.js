@@ -14,6 +14,7 @@ import '../styles/common.less';
 const App = () =>{
 const [distData, setdistData] = useState([])
 const [eventData, setEventData] = useState([])
+const [searchRes, setSearchRes] = useState([])
 const [initeventData, setInitEventData] = useState([])
 const [detailData, setdetailData] = useState([])
   const fetchDistrict = async () => {
@@ -52,6 +53,15 @@ const [detailData, setdetailData] = useState([])
     setEventData(filterEvent)
   }
 
+  const searchFilter = (e) => {
+    let searchEvent =  initeventData.filter((data) =>{
+      let searchIndex = data.name.toLowerCase() + data.district.toLowerCase() + data.overview.toLowerCase() + data.activities.toLowerCase()
+      return searchIndex.indexOf(
+        e.toLowerCase()) !== -1   
+     });
+     setSearchRes(searchEvent)
+  }
+
   const navi = (id) => {
 
     console.log(detailData, 'ytfy')
@@ -72,16 +82,16 @@ const [detailData, setdetailData] = useState([])
     <>
     <div className="App">
       <Router>
-        <Layout>
+        <Layout searchRes={searchRes} searchFilter={searchFilter} >
           <Switch>
             <Route exact path="/">
-              <Home distData={distData} eventData={eventData} distFilter={distFilter}/>
+              <Home distData={distData} eventData={eventData} searchRes={searchRes} distFilter={distFilter} searchFilter={searchFilter}/>
             </Route>            
             <Route path="/login">
               <Login />
-            </Route>     
+            </Route>
             <Route path="/:slug">
-              <Detail eventData={eventData} detailData={detailData} navi={navi}/>
+              <Detail eventData={eventData} searchRes={searchRes} detailData={detailData} navi={navi} searchFilter={searchFilter}/>
             </Route>     
           </Switch>
         </Layout>

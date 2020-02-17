@@ -3,6 +3,7 @@ import '../component/style.less';
 import District from '../component/category.js'
 import EventList from '../component/card.js'
 
+
 const Home = ({distData, eventData, distFilter}) => {
 
   return (
