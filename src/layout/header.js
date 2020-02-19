@@ -5,10 +5,9 @@ import './style.less';
 import {AuthContext} from '../store/authvalue.js'
 import Searchlist from '../component/search.js'
 
-const Header = ({searchRes , searchFilter}) =>{
-  
-  const { token, storeToken, localtoken,clear } = useContext(AuthContext);
-  console.log(searchRes, 'xxxx')
+const Header = () =>{
+
+  const {  localtoken,clear } = useContext(AuthContext);
   return(
     
     <header>
@@ -16,7 +15,7 @@ const Header = ({searchRes , searchFilter}) =>{
         <div className="contentArea">
           <Link to="/" className="logo"></Link>
           <nav>
-          <Searchlist searchFilter={searchFilter} searchRes={searchRes}/>
+          <Searchlist />
             <div className="langSwitch">
               <span className="ar">AR</span>
               <span className="en">EN</span>

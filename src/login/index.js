@@ -11,7 +11,7 @@ const Login = () => {
   const [email, setEmail] = useState('') 
   const [password, setPassword] = useState('')
   const [response, setResponse] = useState('')
-  const { token, storeToken } = useContext(AuthContext);
+  const { storeToken } = useContext(AuthContext);
 
   const handleEmail= (e) => {
     setEmail(e.target.value)

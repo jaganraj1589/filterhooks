@@ -6,8 +6,10 @@ import {
   Route,
   useParams
 } from "react-router-dom";
+import { useDataValue } from '../store/datacontext';
 
-const Detail = ({detailData, navi}) =>{
+const Detail = () =>{
+  const {detailData, navi} = useDataValue()
   const [deTab, setDeTab] = useState('overview')
   const activeTab = (e) => {
     const clicked  = e.currentTarget.id

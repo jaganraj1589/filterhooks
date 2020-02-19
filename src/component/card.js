@@ -1,8 +1,10 @@
 import React from 'react';
 import './style.less';
 import {Link} from 'react-router-dom'
+import { useDataValue } from '../store/datacontext';
 
-const EventList = ({eventData, distFilter}) => {
+const EventList = () => {
+  const {eventData,colors} = useDataValue()
   console.log(eventData)
   const months = ["jan", "feb", "mar", "apr", "may", "jun", "jul", "aug", "sep", "oct", "nov", "dec"]
   const getdateMonth = (date) => {
@@ -12,13 +14,14 @@ const EventList = ({eventData, distFilter}) => {
   }
   return(
     <>      
-        {eventData && eventData.length > 1 &&
-          eventData.map(data => {
+        {eventData && eventData.length > 0 &&
+          eventData.map((data, i) => {
             const date = data.start_date.split("-")[2]
             
             const dateMonth = getdateMonth(data.start_date)
+            
             return(
-              <div className="eventList">
+              <div className="eventList" style={{color: colors[data.district_id - 1]}} key={i}>
               <Link to={`/${data.slug}` } className="eventLink"></Link>
               <figure
                 style={{ backgroundImage: `url(${data.assets[0].src})` }}
@@ -33,16 +36,19 @@ const EventList = ({eventData, distFilter}) => {
                 </div>
                 <div className="info">
                   <h3>{data.name}</h3>
-                  <span>{data.display_date}</span>
-                  <span>
+                  <span><i className="icon-calendar"></i> {data.display_date}</span>
+                  <span> <i className="icon-time"></i>
                     {data.start_time} - {data.end_time}
                   </span>
-                  <span>{data.district}</span>
+                  <span><i className="icon-marker"></i> {data.district}</span>
                 </div>
               </div>
             </div>
             )
           })}
+          <i className="eventList"></i>
+          <i className="eventList"></i>
+          <i className="eventList"></i>
       </>
   )
 }

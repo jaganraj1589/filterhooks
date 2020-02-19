@@ -263,18 +263,20 @@ i.eventList {
   }
 }
 
-.districtFilter ul {
-  display: flex;
-  justify-content: space-between;
-  flex-wrap: wrap;
-  list-style: none;
-  margin: 0;
-  padding: 20px 0;
+.districtFilter {
+  margin: 1.5em 0;
+  ul {
+    display: flex;
+    justify-content: center;
+    flex-wrap: wrap;
+    list-style: none;
+    margin: 0;
+    padding: 0;
+  }
   li {
     cursor: pointer;
-    margin: 0;
-    width: 18%;
-    font-weight: 700;
+    width: 32%;
+    font-weight: bold;
     font-size: 0.8em;
     text-align: center;
     padding: 1.2em 0.3em;
@@ -284,6 +286,69 @@ i.eventList {
     border-radius: 0.7em;
     position: relative;
     justify-content: center;
+    box-shadow: 0 0.6em 1.5em rgba(0, 0, 0, 0);
+    transform: scale(0.85);
+    transition: box-shadow 0.5s, transform 0.3s;
+    opacity: 1;
+    margin: 0.5em 0.5%;
+    html[dir='rtl'] & {
+      font-size: 0.95em;
+    }
+    &:before {
+      content: '';
+      position: absolute;
+      left: 0;
+      top: 0;
+      width: 100%;
+      height: 100%;
+      border: 0.2em solid #fff;
+      border-radius: 0.7em;
+      box-sizing: border-box;
+      opacity: 0;
+      transition: opacity 0.3s;
+    }
+    &.active {
+      transform: scale(1);
+      box-shadow: 0 0.6em 1.5em rgba(0, 0, 0, 0.5);
+      &:before {
+        opacity: 1;
+      }
+    }
+    &.district_1 {
+      color: #555759;
+    }
+  }
+  @media @uptoTinyScreen {
+    li {
+      font-size: 0.6em;
+      width: 19%;
+    }
+  }
+  @media @fromTabstartScreen {
+    margin: 1.5em 0;
+    ul {
+      justify-content: space-between;
+    }
+    li {
+      margin: 0;
+      width: 18%;
+      html[dir='rtl'] & {
+        font-size: 1.1em;
+      }
+    }
+  }
+  @media @fromLargeScreen {
+    li {
+      font-size: 1.1em;
+      border-radius: 1.3em;
+      transition: box-shadow 0.5s, transform 0.3s;
+      &:before {
+        border-radius: 1.3em;
+      }
+      &:not(.active):hover:before {
+        opacity: 0.3;
+      }
+    }
   }
 }
 

@@ -1,13 +1,11 @@
-import React, {useState, useMemo, useContext} from 'react';
+import React, {useState} from 'react';
 import Header from './header';
 import Footer from './footer';
 import {AuthContext} from '../store/authvalue.js'
 
-const Layout = ({children, searchRes, searchFilter, clearFilter}) => {
-  
-  // const providerValue = useMemo(() => ({localtoken, setToken}), [localtoken, setToken])
-const temptoken = (window.localStorage && window.localStorage.getItem('token')) || null
-const[localtoken, setToken] = useState(temptoken)
+const Layout = ({children}) => {
+  const temptoken = (window.localStorage && window.localStorage.getItem('token')) || null
+  const[localtoken, setToken] = useState(temptoken)
 
 
   const storeToken = token => {
@@ -23,7 +21,7 @@ const[localtoken, setToken] = useState(temptoken)
       
       <>
         <AuthContext.Provider value={{localtoken, storeToken, clear}}>
-          <Header searchRes={searchRes} searchFilter={searchFilter}  clearFilter={clearFilter}/>
+          <Header />
           <div  tabIndex="-1" role="group">
             <div  tabIndex="-1" role="group">
               {children}

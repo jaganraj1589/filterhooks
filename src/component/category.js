@@ -1,14 +1,18 @@
 import React from 'react';
 import './style.less';
+import { useDataValue } from '../store/datacontext';
 
-const District = ({distData, distFilter}) => {
-  console.log(distData)
-  const colors = ["rgb(253, 217, 0)", "rgb(149, 201, 61)", "rgb(4, 178, 226)", "rgb(179, 30, 140)", "rgb(238, 137, 34)"]
+
+const District = () => {
+  
+  const {distData, distFilter,colors} = useDataValue()
+  
   return(
     <>
       {distData && distData.length > 1 && 
-        distData.map(data => 
-          <li  
+        distData.map((data,i) => 
+          <li key={i}  
+            className={`district_${data.id}`}
             style={{backgroundColor: colors[data.id - 1]}} 
             onClick = {e => distFilter(data.id)}>{data.name}
           </li>
