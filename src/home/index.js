@@ -5,9 +5,11 @@ import District from '../component/category.js'
 import EventList from '../component/card.js'
 import Monthselect from '../component/monthselect';
 import Pattern from './pattern';
+import { useDataValue } from '../store/datacontext';
 
 
 const Home = () => {
+  const{eventData} = useDataValue()
 const home = useRef()
   useEffect(()=>{
     if(home.current){
@@ -47,7 +49,12 @@ const home = useRef()
         <section className="eventsBlock">
           <div className="contentArea">
             <div className="eventsWrap">
-              <EventList />
+              {eventData && eventData.length > 0 ? 
+              <EventList /> 
+              : 
+              <div className="noEvents">Stay tuned for more events coming soon</div>
+            }
+              
             </div>
           </div>
         </section>

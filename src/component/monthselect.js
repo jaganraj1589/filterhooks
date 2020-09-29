@@ -1,27 +1,20 @@
 import React, { useState } from 'react';
 import Select from 'react-select'
 import './mselect.less'
+import { useDataValue } from '../store/datacontext';
 
 const Monthselect = () =>{
-  const [mselect, setmSelect] = useState(null)
-  const options = [
-    { value: 'chocolate', label: 'Chocolate' },
-    { value: 'strawberry', label: 'Strawberry' },
-    { value: 'vanilla', label: 'Vanilla' },
-  ];
-  const handleSelect = (selectedMonth) => {
-    setmSelect(selectedMonth)
-    console.log(`Option selected:`, selectedMonth);
-  }
+  const {mselect, monthOptions, setmSelect} = useDataValue();
   return(
     <div className="monthFilter">
        <Select
         value={mselect}
-        onChange={handleSelect}
-        options={options}
+        onChange={selectedMonth => (setmSelect(selectedMonth) )}
+        options={monthOptions}
         isMulti={true}
         className = {'mSelect'}
         classNamePrefix  = {'mSelect'}
+        hideSelectedOptions={false}
       />
     </div>
   )

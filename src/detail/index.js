@@ -9,7 +9,7 @@ import {
 import { useDataValue } from '../store/datacontext';
 
 const Detail = () =>{
-  const {detailData, navi} = useDataValue()
+  const {detailData, navi, colors} = useDataValue()
   const [deTab, setDeTab] = useState('overview')
   const activeTab = (e) => {
     const clicked  = e.currentTarget.id
@@ -28,7 +28,7 @@ const Detail = () =>{
             (data.slug === slug) ? 
               <>
                 
-                      <div className="eventsContainer">
+                      <div className="eventsContainer" style={{color: colors[data.district_id - 1]}}>
                         <div className="eventPatterns">
                           <i className="left"></i>
                           <i className="right"></i>

@@ -5,7 +5,7 @@ import { useDataValue } from '../store/datacontext';
 
 const EventList = () => {
   const {eventData,colors} = useDataValue()
-  console.log(eventData)
+  // console.log(eventData)
   const months = ["jan", "feb", "mar", "apr", "may", "jun", "jul", "aug", "sep", "oct", "nov", "dec"]
   const getdateMonth = (date) => {
     let dateSplit = date.split("-")

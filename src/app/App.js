@@ -11,6 +11,7 @@ import {
 } from "react-router-dom";
 import '../styles/common.less';
 import {  Dataprovider } from '../store/datacontext';
+import Register from '../register';
 
 const App = () =>{
 
@@ -28,6 +29,9 @@ const App = () =>{
             </Route>            
             <Route path="/login">
               <Login />
+            </Route>
+            <Route path="/register">
+              <Register />
             </Route>
             <Route path="/:slug">
               <Detail />
